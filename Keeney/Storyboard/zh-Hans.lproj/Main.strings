@@ -1,0 +1,51 @@
+
+/* Class = "UILabel"; text = "Nordea ****4588"; ObjectID = "0GP-aQ-HDc"; */
+"0GP-aQ-HDc.text" = "Nordea ****4588";
+
+/* Class = "UILabel"; text = "金额"; ObjectID = "4gm-in-wXx"; */
+"4gm-in-wXx.text" = "金额";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "A8F-gD-G2P"; */
+"A8F-gD-G2P.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "吃饭、日用品.."; ObjectID = "E92-Od-Elq"; */
+"E92-Od-Elq.placeholder" = "吃饭、日用品..";
+
+/* Class = "UILabel"; text = "选择支出的账户"; ObjectID = "NFo-kK-pwC"; */
+"NFo-kK-pwC.text" = "选择支出的账户";
+
+/* Class = "UITabBarItem"; title = "Item 1"; ObjectID = "P8B-UX-aVX"; */
+"P8B-UX-aVX.title" = "Item 1";
+
+/* Class = "UITextField"; placeholder = "20.4"; ObjectID = "Xr8-tb-Roe"; */
+"Xr8-tb-Roe.placeholder" = "20.4";
+
+/* Class = "UIButton"; normalTitle = "杂"; ObjectID = "YHz-c7-XKe"; */
+"YHz-c7-XKe.normalTitle" = "杂";
+
+/* Class = "UIButton"; normalTitle = "食"; ObjectID = "aCM-mN-V01"; */
+"aCM-mN-V01.normalTitle" = "食";
+
+/* Class = "UILabel"; text = "用途"; ObjectID = "dcF-Xo-SGK"; */
+"dcF-Xo-SGK.text" = "用途";
+
+/* Class = "UIButton"; normalTitle = "住"; ObjectID = "ekm-1T-sue"; */
+"ekm-1T-sue.normalTitle" = "住";
+
+/* Class = "UIButton"; normalTitle = "行"; ObjectID = "gPJ-yP-B3y"; */
+"gPJ-yP-B3y.normalTitle" = "行";
+
+/* Class = "UILabel"; text = "10.4"; ObjectID = "lma-N9-kvk"; */
+"lma-N9-kvk.text" = "10.4";
+
+/* Class = "UIButton"; normalTitle = "玩"; ObjectID = "m4B-7E-3Qf"; */
+"m4B-7E-3Qf.normalTitle" = "玩";
+
+/* Class = "UITabBarItem"; title = "Payments"; ObjectID = "m8r-KY-mSS"; */
+"m8r-KY-mSS.title" = "Payments";
+
+/* Class = "UIButton"; normalTitle = "保存"; ObjectID = "oB8-6b-FGq"; */
+"oB8-6b-FGq.normalTitle" = "保存";
+
+/* Class = "UIButton"; normalTitle = "衣"; ObjectID = "uBK-jj-skF"; */
+"uBK-jj-skF.normalTitle" = "衣";

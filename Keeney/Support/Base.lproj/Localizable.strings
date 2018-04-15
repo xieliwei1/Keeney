@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  Keeney
+
+  Created by Xie Liwei on 15/04/2018.
+  Copyright © 2018 Xie Liwei. All rights reserved.
+*/
+
+"#NoPayment" = "You don't have any payment yet!";
+"#PaymentsTitle" = "Payments";
