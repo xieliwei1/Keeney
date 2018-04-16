@@ -23,6 +23,9 @@ extension UIColor {
     class var keeneyGreen: UIColor {
         return UIColor(red: 55.0 / 255.0, green: 189.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0)
     }
+    class var keeneyGreyLine: UIColor {
+        return UIColor(red: 233.0 / 255.0, green: 234.0 / 255.0, blue: 234.0 / 255.0, alpha: 1.0)
+    }
 }
 
 extension UIFont {

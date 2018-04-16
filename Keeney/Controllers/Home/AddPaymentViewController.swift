@@ -67,7 +67,7 @@ class AddPaymentViewController: UIViewController, UIPickerViewDelegate, UIPicker
             let amount = amountTextField.text,
             let account = fromAccount,
             let type = paymentType else { return }
-        let date = Int(Date.timeIntervalBetween1970AndReferenceDate)
+        let date = Int(Date().timeIntervalSince1970)
         record.setObject(description as CKRecordValue, forKey: "Description")
         record.setObject(amount as CKRecordValue, forKey: "Amount")
         record.setObject(account as CKRecordValue, forKey: "FromAccount")
@@ -76,11 +76,24 @@ class AddPaymentViewController: UIViewController, UIPickerViewDelegate, UIPicker
         if let location = locationManager?.location {
             record.setObject(location as CKRecordValue, forKey: "PaymentLocation")
         }
-        CKContainer.default().privateCloudDatabase.save(record) { (ckRecord, error) in
+        database.save(record) { (ckRecord, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                print(ckRecord)
+                var payment = [String: Any]()
+                payment["description"] = description
+                payment["amount"] = amount
+                payment["fromAccount"] = account
+                payment["paymentType"] = type
+                payment["paymentTime"] = "\(date)"
+                payment["paymentLatitude"] = 0
+                payment["paymentLongitude"] = 0
+                payment["paymentIDName"] = ckRecord!.recordID.recordName
+                payment["isDeleted"] = false
+                UserDefaultsService.shared.addNewPayment(payment: payment)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                    self.navigationController?.popViewController(animated: true)
+                })
             }
         }
     }

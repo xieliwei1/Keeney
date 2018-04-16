@@ -10,53 +10,63 @@ import UIKit
 import CloudKit
 class PaymentViewModel: NSObject {
 
-    var payments = [Payment]()
+    var payments = PaymentService.shared.loadPayments()
     
     func getPayments(completion: @escaping ()-> Void) {
-        payments.removeAll()
-        let predicate = NSPredicate(value: true)
-        let query = CKQuery(recordType: "Bills", predicate: predicate)
-        CKContainer.default().privateCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                guard let records = records else {
-                    completion()
-                    return
-                }
-                self.handleCloudKitRecordsToPayments(records: records)
-                completion()
-            }
+        PaymentService.shared.getPaymentsFromCloud {
+            self.payments = PaymentService.shared.loadPayments()
+            completion()
         }
     }
-    
-    func handleCloudKitRecordsToPayments(records:[CKRecord]) {
-        for record in records {
-            let amount = record.object(forKey: "Amount") as? String ?? ""
-            let description = record.object(forKey: "Description") as? String ?? ""
-            let fromAccount = record.object(forKey: "FromAccount") as? String ?? ""
-            let paymentType = record.object(forKey: "PaymentType") as? String ?? ""
-            let paymentTime = record.object(forKey: "PaymentTime") as? String ?? ""
-            let paymentLocation = record.object(forKey: "PaymentLocation") as? CLLocation
-            let payment = Payment(amount: amount, description: description, fromAccount: fromAccount, paymentType: paymentType, paymentLocation: paymentLocation, paymentTime: paymentTime)
-            payments.append(payment)
-        }
-    }
+
     
     func numbersOfPayment() -> Int {
+        guard let payments = payments else {
+            return 0
+        }
         return payments.count
     }
     
     func paymentAmount(for indexPath: IndexPath) -> String {
+        guard let payments = payments else {
+            return ""
+        }
         return payments[indexPath.row].amount
     }
     
     func paymentDescription(for indexPath: IndexPath) -> String {
+        guard let payments = payments else {
+            return ""
+        }
         return payments[indexPath.row].description
     }
     
     func paymentFromAccount(for indexPath: IndexPath) -> String {
+        guard let payments = payments else {
+            return ""
+        }
         return payments[indexPath.row].fromAccount
     }
     
+    func delectPayment(for indexPath: IndexPath, completion: @escaping (_ success: Bool)-> Void) {
+        guard let paymentID = payments?[indexPath.row].paymentID else { return }
+        database.fetch(withRecordID: paymentID) { (record, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                completion(false)
+            } else {
+                record?.setObject("true" as CKRecordValue, forKey: "isDeleted")
+                database.save(record!, completionHandler: { (record, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        completion(false)
+                    } else {
+                        self.getPayments {
+                            completion(true)
+                        }
+                    }
+                })
+            }
+        }
+    }
 }
